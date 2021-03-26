@@ -1,0 +1,31 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: StakingAuRa
+    network: xdai
+    source:
+      address: "0x2DdB8A7541e6cAA50F74e7FACFF9Fe9da00e0A6c"
+      abi: StakingAuRa
+      startBlock: 9053323
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - PlacedStake
+        - WithdrewStake
+      abis:
+        - name: StakingAuRa
+          file: ./abis/StakingAuRa.json
+      eventHandlers:
+        - event: PlacedStake(indexed address,indexed address,indexed uint256,uint256)
+          handler: handlePlacedStake
+        - event: WithdrewStake(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleWithdrewStake
+        - event: MovedStake(address,indexed address,indexed address,indexed uint256,uint256)
+          handler: handleMovedStake
+        - event: ClaimedOrderedWithdrawal(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleClaimedOrderedWithdrawal
+      file: ./src/mapping.ts

@@ -1,0 +1,13 @@
+{
+  "name": "xdai-stakers-subgraph",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ maxaleks/xdai-stakers"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.17.1",
+    "@graphprotocol/graph-ts": "0.17.0"
+  }
+}

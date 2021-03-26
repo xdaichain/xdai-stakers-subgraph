@@ -1,0 +1,1 @@
+xDai Stakers subgraph
