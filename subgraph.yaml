@@ -28,4 +28,24 @@ dataSources:
           handler: handleMovedStake
         - event: ClaimedOrderedWithdrawal(indexed address,indexed address,indexed uint256,uint256)
           handler: handleClaimedOrderedWithdrawal
-      file: ./src/mapping.ts
+      file: ./src/stakers.ts
+  - kind: ethereum/contract
+    name: StakeToken
+    network: xdai
+    source:
+      address: "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e"
+      abi: StakeToken
+      startBlock: 11582256
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - Holder
+      abis:
+        - name: StakeToken
+          file: ./abis/StakeToken.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/holders.ts

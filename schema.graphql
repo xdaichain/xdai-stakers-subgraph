@@ -3,3 +3,9 @@ type Staker @entity {
   address: Bytes!
   balance: BigInt!
 }
+
+type Holder @entity {
+  id: ID!
+  address: Bytes!
+  balance: BigInt!
+}
