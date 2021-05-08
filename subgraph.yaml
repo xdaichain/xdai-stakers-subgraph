@@ -30,6 +30,33 @@ dataSources:
           handler: handleClaimedOrderedWithdrawal
       file: ./src/stakers.ts
   - kind: ethereum/contract
+    name: StakingAuRaV2
+    network: xdai
+    source:
+      address: "0x2DdB8A7541e6cAA50F74e7FACFF9Fe9da00e0A6c"
+      abi: StakingAuRaV2
+      startBlock: 9053323
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - PlacedStake
+        - WithdrewStake
+      abis:
+        - name: StakingAuRaV2
+          file: ./abis/StakingAuRaV2.json
+      eventHandlers:
+        - event: PlacedStake(indexed address,indexed address,indexed uint256,uint256,uint256)
+          handler: handlePlacedStakeV2
+        - event: WithdrewStake(indexed address,indexed address,indexed uint256,uint256,uint256)
+          handler: handleWithdrewStakeV2
+        - event: MovedStake(address,indexed address,indexed address,indexed uint256,uint256,uint256,uint256)
+          handler: handleMovedStakeV2
+        - event: ClaimedOrderedWithdrawal(indexed address,indexed address,indexed uint256,uint256,uint256)
+          handler: handleClaimedOrderedWithdrawalV2
+      file: ./src/stakers.ts
+  - kind: ethereum/contract
     name: StakeToken
     network: xdai
     source:
